@@ -5,7 +5,7 @@ on:
 
 jobs:
   job1:
-    uses: asami-minegishi-visasq/reusing_workflows_test/tree/main/.github/workflows/.github/workflows/main.yml@main
+    uses: asami-minegishi-visasq/reusing_workflows_test/.github/workflows/.github/workflows/main.yml@main
 
   job2:
     runs-on: ubuntu-latest
