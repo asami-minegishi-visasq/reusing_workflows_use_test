@@ -7,7 +7,7 @@ jobs:
   set-inputs:
     runs-on: ubuntu-latest
     outputs:
-      environment: ${{ steps.set_env_production.outputs.environment || stg }}
+      environment: ${{ steps.set_env_production.outputs.environment || 'stg' }}
     steps:
       - name: Set environment for branch and tag
         id: set_env_production
