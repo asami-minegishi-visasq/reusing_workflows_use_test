@@ -2,13 +2,13 @@ name: Call a reusable workflow and use its outputs
 
 on:
   workflow_dispatch:
-env:
-  TEST1: test
-  TEST2: testtest
 
 jobs:
   job1:
     uses: asami-minegishi-visasq/reusing_workflows_test/.github/workflows/main.yml@main
+    with:
+      TEST1: test
+      TEST2: testtest
   job2:
     runs-on: ubuntu-latest
     needs: job1
