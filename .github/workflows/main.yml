@@ -4,10 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
+  set-inputs:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set_env_production.outputs.environment || stg }}
+    steps:
+      - name: Set environment for branch and tag
+        id: set_env_production
+        if: $GITHUB_REF == 'refs/heads/main'
+        run: |
+          echo "environment=production" >> $GITHUB_OUTPUT
   job1:
+    needs: set-inputs
     uses: asami-minegishi-visasq/reusing_workflows_test/.github/workflows/main.yml@main
     with:
-      TEST1: test
+      TEST1: ${{ needs.set-inputs.outputs.environment }}
       TEST2: testtest
   job2:
     runs-on: ubuntu-latest
