@@ -2,33 +2,13 @@ name: Call a reusable workflow and use its outputs
 
 on:
   workflow_dispatch:
-    inputs:
-        workflow_version:
-          description: 'Select workflow version'
-          type: choice
-          required: false
-          default: 'main'
-          options:
-            - main
-            - staging
   push:
     branches:
       - main
 
 jobs:
-  set-env:
-    runs-on: ubuntu-latest
-    outputs:
-      workflow_version: ${{ steps.set_version.outputs.workflow_version }}
-    steps:
-      - name: Set environment for branch and tag
-        id: set_version
-        run: |
-          echo "workflow_version=${{ inputs.workflow_version || 'main' }}" >> $GITHUB_OUTPUT
-    
   job1:
-    needs: set-env
-    uses: asami-minegishi-visasq/reusing_workflows_test/.github/workflows/main.yml@${{ needs.set-env.outputs.workflow_version }}
+    uses: asami-minegishi-visasq/reusing_workflows_test/.github/workflows/main.yml@main
   job2:
     runs-on: ubuntu-latest
     needs: job1
