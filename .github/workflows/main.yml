@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Set environment for branch and tag
         id: set_env_production
-        if: GITHUB_REF == 'refs/heads/main'
+        if: github.base_ref == 'main' || github.ref_name == 'main'
         run: |
           echo "environment=production" >> $GITHUB_OUTPUT
   job1:
