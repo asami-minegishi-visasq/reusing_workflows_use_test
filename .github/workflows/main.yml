@@ -20,6 +20,8 @@ jobs:
     with:
       TEST1: ${{ needs.set-inputs.outputs.environment }}
       TEST2: testtest
+      TEST3: testtesttesttest
+      TEST4: testtesttesttesttesttest
   job2:
     runs-on: ubuntu-latest
     needs: job1
